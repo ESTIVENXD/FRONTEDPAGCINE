@@ -8,11 +8,11 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   imports: [ReactiveFormsModule, FormsModule,CommonModule],
-  selector: 'app-bienvenido',
-  styleUrl: './bienvenido.css',
-  templateUrl: './bienvenido.html',
+  selector: 'app-anuncio',
+  styleUrl: './anuncio.css',
+  templateUrl: './anuncio.html',
 })
-export class Bienvenido implements  OnInit {
+export class Anuncio implements  OnInit {
 
   formularioAnuncio:FormGroup;
   private readonly http:HttpClient;
@@ -25,6 +25,7 @@ export class Bienvenido implements  OnInit {
       {
         titulo:['',[Validators.required]],
         descripcion:['',[Validators.required]],
+        imagen:['']
       }
     );
     this.http = http;
@@ -39,6 +40,20 @@ export class Bienvenido implements  OnInit {
       this.cdr.detectChanges();
       }
     )
+  }
+
+  agregarImagen(event:any){
+    const archivo = event.target.files[0];
+    if (archivo){
+      const lector = new FileReader();
+      lector.onload = () => {
+        this.formularioAnuncio.patchValue({imagen: lector.result });
+        this.cdr.detectChanges(); 
+      };
+      lector.readAsDataURL(archivo);
+      
+    }
+    
   }
 
   guardarAnuncio(){
@@ -57,7 +72,7 @@ export class Bienvenido implements  OnInit {
       this.buscarAnuncios();
     }
     else{
-      alert("Error al crear Anuncio, exsiteun problema en el servidor.")
+      alert("Error al crear Anuncio, exsite un problema en el servidor.")
     }
   }
 }

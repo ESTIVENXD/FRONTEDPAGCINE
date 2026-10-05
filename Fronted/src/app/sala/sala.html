@@ -1,0 +1,91 @@
+<div class="container-fluid mt-5 container-fluid page-background">
+  <div class="row justify-content-center g-4">
+        <div class="col-12 col-md-6 col-lg-4 order-lg-2">
+
+<h2 class="fw-bold d-flex justify-content-center text-center mb-4 ">Crear Sala:</h2>
+<div class="card p-4 shadow-sm">
+
+<form [formGroup]="formularioSala" (ngSubmit)="guardarSala()">
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="tituloInput" class="col-form-label, text-secondary">Nombre:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+    
+    <input type="text" id="nombre" formControlName="nombre" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+    @if(formularioSala.get('nombre')?.invalid 
+    && formularioSala.get('nombre')?.touched){
+        <span id="passwordHelpInline" class="form-text"> El nombre es obligatorio</span>
+    }</div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="filas" class="col-form-label, text-secondary">Fila:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+        
+    <input type="text" id="filas" formControlName="filas" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+    @if(formularioSala.get('filas')?.invalid 
+    && formularioSala.get('filas')?.touched){
+        <span id="passwordHelpInline" class="form-text"> La fila es obligatorio </span>
+    }</div>
+    </div> 
+    
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="asientosPorFila" class="col-form-label, text-secondary">Asientos por fila:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="text" id="asientosPorFila" formControlName="asientosPorFila" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+    @if(formularioSala.get('asientosPorFila')?.invalid 
+    && formularioSala.get('asientosPorFila')?.touched){
+        <span id="passwordHelpInline" class="form-text"> Los asientos por filas son obligatorios</span>
+    }</div>
+</div>
+<button type="submit" class="btn btn-outline-secondary w-100 mt-2">Agregar</button>
+</form>
+</div>
+</div>
+
+
+
+<div class="col-12 col-lg-7 mb-4">
+<h2 class="fw-bold mb-4">Salas</h2>
+<table class="table table-hover align-middle border shadow-sm rounded">
+    <thead class="table-light">
+        <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Fila</th>
+        <th>Asientos por fila</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(sala of salas; track sala.idsala){
+        <tr>
+            <td>{{sala.idSala}}</td>
+            <td>{{sala.nombre}}</td>
+            <td>{{sala.filas}}</td>
+            <td>{{sala.asientosPorFila}}</td>
+        </tr>
+        }
+    </tbody>
+</table>
+</div>
+    </div>
+</div>

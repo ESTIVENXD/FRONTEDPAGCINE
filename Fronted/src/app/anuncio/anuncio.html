@@ -1,0 +1,119 @@
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      Usuario
+    </div>
+    <div class="col">
+      Anuncio
+    </div>
+    <div class="col">
+      Clasificacion
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-5 container-fluid page-background">
+  <div class="row justify-content-center g-4">
+        <div class="col-12 col-md-6 col-lg-4 order-lg-2">
+
+<h2 class="fw-bold d-flex justify-content-center text-center mb-4 ">Crear Anuncio:</h2>
+<div class="card p-4 shadow-sm">
+
+<form [formGroup]="formularioAnuncio" (ngSubmit)="guardarAnuncio()">
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="tituloInput" class="col-form-label, text-secondary">Titulo:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="text" id="tituloInput" formControlName="titulo" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+    @if (formularioAnuncio.get('titulo')?.invalid && formularioAnuncio.get('titulo')?.touched){
+        <span id="passwordHelpInline" class="form-text">El titulo es obligatorio</span>
+    }</div>
+    </div>
+      
+
+
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="inputPassword6" class="col-form-label, text-secondary">Descripcion:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="text" formControlName="descripcion" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+    @if(formularioAnuncio.get('descripcion')?.invalid && formularioAnuncio.get('descripcion')?.touched){
+        <span id="passwordHelpInline" class="form-text">La descripcion es obligatorio</span>
+}</div>
+</div>
+
+<div class="mb-3">
+    <label for="formFileMultiple" class="form-label">Imagen:</label>
+    <input type = "file" accept = "image/*" (change)="agregarImagen($event)" class="form-control" type="file" id="formFile" >
+  </div>
+
+    @if(formularioAnuncio.get('imagen')?.invalid && formularioAnuncio.get('imagen')?.touched){
+ <div class="invalid-feedback"> Por favor, selecciona una imagen válida para el anuncio.</div>
+  }
+
+@if(formularioAnuncio.value.imagen) {
+  <div class="card p-3 bg-light border-0 shadow-sm rounded-3 d-inline-block text-center mt-2 animate__animated animate__fadeIn">
+    <div class="d-flex align-items-center justify-content-between mb-2 border-bottom pb-2">
+    </div>
+    
+    <div class="position-relative overflow-hidden rounded border bg-white p-1" style="width: 160px; height: 160px; display: flex; align-items: center; justify-content: center;">
+      <img [src]="formularioAnuncio.value.imagen" class="img-fluid rounded"style="max-width: 100%; max-height: 100%; object-fit: contain;"alt="Previsualización">
+
+    </div>
+  </div>
+}
+<br>
+
+<button type="submit" class="btn btn-outline-secondary w-100 mt-2">Guardar</button>
+
+</form>
+
+</div>
+</div>
+
+
+<div class="col-12 col-lg-7 mb-4">
+<h2 class="fw-bold mb-4">Anuncios Creados:</h2>
+<table class="table table-hover align-middle border shadow-sm rounded">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Titulo</th>
+        <th>Descripcion</th>
+        <th>Fecha Creacion</th>
+        <th>Foto</th>
+      </tr> 
+    </thead>
+    <tbody>
+        @for (anuncio of anuncios; track anuncio.idAnuncio){
+            <tr>
+                <td>{{anuncio.idAnuncio}}</td>
+                <td>{{anuncio.titulo}}</td>
+                <td>{{anuncio.descripcion}}</td>
+                <td>{{anuncio.fechaPublicacion | date}}</td>
+                <td>@if (anuncio.imagen) {
+        <img [src]="anuncio.imagen" alt="Foto del anuncio" style="width: 80px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      } @else {
+        <span class="text-muted small">Sin foto</span>
+      }</td>
+      </tr>
+    }
+    </tbody>
+</table>
+</div>
+ </div>
+</div>
+
