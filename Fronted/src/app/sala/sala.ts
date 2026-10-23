@@ -59,4 +59,7 @@ export class Sala implements OnInit {
       alert("Error al crear el usuario, exsite un problema en el servidor.")
     }
   }
+   verAsiento (sala:any){
+    location.href="/asiento/"+sala.idSala;
+  }
 }

@@ -1,0 +1,18 @@
+<div class="container">
+    <h2>Telefonos creados:</h2>
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Telefono</th>
+        
+    </thead>
+    <tbody>
+        @for(telefono of telefonos; track telefono.idtelefono){
+        <tr>
+            <td>{{telefono.idTelefono}}</td>
+            <td>{{telefono.telefono}}</td>
+        </tr>
+        }
+    </tbody>
+</table>
+</div>

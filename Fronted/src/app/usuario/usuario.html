@@ -166,7 +166,9 @@
         <th>Nombre Usuario</th>
         <th>Password</th>
         <th>Rol</th>
-        <th>Foto</th>   
+        <th>Foto</th>  
+        <th>Consultar Telefonos</th>  
+
         </tr>
     </thead>
     <tbody>
@@ -184,6 +186,7 @@
       } @else {
         <span class="text-muted small">Sin foto</span>
       }</td>
+            <td><button (click)="verTelefonos(usuario)"> Ver telefonos</button></td>
         </tr>
         }
             </tbody>

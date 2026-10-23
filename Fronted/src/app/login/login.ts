@@ -38,7 +38,8 @@ export class Login {
   }
   validar(usuario: any) {
     if (usuario?.idUsuario) {
-      location.href = "/bienvenido";
+      localStorage.setItem("usuario",JSON.stringify(usuario));
+      location.href = "/anuncio";
     }
     else {
       alert("Usuario o password invalido");

@@ -1,0 +1,171 @@
+<div class="container-fluid mt-5 container-fluid page-background">
+  <div class="row justify-content-center g-4">
+        <div class="col-12 col-md-6 col-lg-4 order-lg-2">
+
+<h2 class="fw-bold d-flex justify-content-center text-center mb-4 ">Crear Pelicula:</h2>
+<div class="card p-4 shadow-sm">
+
+    <form [formGroup]="formularioPelicula" (ngSubmit)="guardarPelicula()">
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="tituloInput" class="col-form-label, text-secondary">Titulo:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="text" id="tituloInput" formControlName="titulo" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+    @if (formularioPelicula.get('titulo')?.invalid && formularioPelicula.get('titulo')?.touched){
+    <span id="passwordHelpInline" class="form-text">El titulo es obligatorio</span>
+    }</div>
+    </div>
+
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="sinopsisInput" class="col-form-label, text-secondary">Sinopsis:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="text" id="sinopsisInput" formControlName="sinopsis" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+    
+    @if (formularioPelicula.get('sinopsis')?.invalid && formularioPelicula.get('sinopsis')?.touched){
+    <span id="passwordHelpInline" class="form-text">La sinopsis es obligatorio</span>
+    }</div>
+    </div>
+
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="duracionMinutosInput" class="col-form-label, text-secondary">Duracion Minutos:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="number" id="duracionMinutosInput" formControlName="duracionMinutos" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+    
+    @if (formularioPelicula.get('duracionMinutos')?.invalid && formularioPelicula.get('duracionMinutos')?.touched){
+    <span id="passwordHelpInline" class="form-text">La duracion es obligatorio</span>
+    }</div>
+    </div>
+
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="idGeneroSelect" class="col-form-label, text-secondary">Genero:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <select type="text" id="idGeneroSelect" formControlName="idGenero" class="form-select" aria-describedby="passwordHelpInline">
+    <option value="" disabled selected>Seleccione un género...</option>
+
+     @for (genero of generos; track genero.idGenero) {
+        <option [value]="genero.idGenero">{{ genero.nombre }}</option>
+      }
+    </select>
+  </div>
+
+    <div class="col-auto">
+    @if (formularioPelicula.get('idGenero')?.invalid && formularioPelicula.get('idGenero')?.touched){
+    <span id="passwordHelpInline" class="form-text">El genero es obligatorio</span>
+    }</div>
+    </div>
+
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="idClasificacionSelect" class="col-form-label, text-secondary">Clasificacion:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <select type="text" id="idClasificacionSelect" formControlName="idClasificacion" class="form-select" aria-describedby="passwordHelpInline">
+    <option value="" disabled selected>Seleccione un clasificacion...</option>
+
+     @for (clasificacion of clasificaciones; track clasificacion.idClasificacion) {
+        <option [value]="clasificacion.idClasificacion">{{ clasificacion.nombre }}</option>
+      }
+    </select>
+  </div>
+
+    <div class="col-auto">
+    @if (formularioPelicula.get('idClasificacion')?.invalid && formularioPelicula.get('idClasificacion')?.touched){
+    <span id="passwordHelpInline" class="form-text">La clasificacion es obligatorio</span>
+    }</div>
+    </div>
+
+
+    <div class="mb-3">
+    <label for="formFileMultiple" class="form-label">Imagen:</label>
+    <input type = "file" accept = "image/*" (change)="agregarImagen($event)" class="form-control" type="file" id="formFile" >
+  </div>
+
+    @if(formularioPelicula.get('imagenPromocional')?.invalid && formularioPelicula.get('imagenPromocional')?.touched){
+ <div class="invalid-feedback"> Por favor, selecciona una imagen válida para la pelicula.</div>
+  }
+
+@if(formularioPelicula.value.imagenPromocional) {
+  <div class="card p-3 bg-light border-0 shadow-sm rounded-3 d-inline-block text-center mt-2 animate__animated animate__fadeIn">
+    <div class="d-flex align-items-center justify-content-between mb-2 border-bottom pb-2">
+    </div>
+    
+    <div class="position-relative overflow-hidden rounded border bg-white p-1" style="width: 160px; height: 160px; display: flex; align-items: center; justify-content: center;">
+      <img [src]="formularioPelicula.value.imagenPromocional" class="img-fluid rounded"style="max-width: 100%; max-height: 100%; object-fit: contain;"alt="Previsualización">
+
+    </div>
+  </div>
+  }
+<br>
+
+<button type="submit" class="btn btn-outline-secondary w-100 mt-2">Guardar</button>
+
+</form>
+
+</div>
+</div>
+
+
+<div class="col-12 col-lg-7 mb-4">
+<h2 class="fw-bold mb-4">Peliculas Creados:</h2>
+<table class="table table-hover align-middle border shadow-sm rounded">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Titulo</th>
+        <th>Sinopsis</th>
+        <th>Duracion Minutos</th>
+        <th>Genero</th>
+        <th>Clasificacion</th>
+        <th>Promocional</th>
+      </tr> 
+    </thead>
+    <tbody>
+
+        @for (pelicula of peliculas; track pelicula.idPelicula){
+            <tr>
+                <td>{{pelicula.idPelicula}}</td>
+                <td>{{pelicula.titulo}}</td>
+                <td>{{pelicula.sinopsis}}</td>
+                <td>{{pelicula.duracionMinutos}}</td>
+                <td>{{pelicula.idGenero}}</td>
+                <td>{{pelicula.idClasificacion}}</td>
+                <td>@if (pelicula.imagenPromocional) {
+        <img [src]="pelicula.imagenPromocional" alt="Foto del pelicula" style="width: 80px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      } @else {
+        <span class="text-muted small">Sin foto</span>
+      }</td>
+      </tr>
+    }
+    </tbody>
+</table>
+</div>
+ </div>
+</div>

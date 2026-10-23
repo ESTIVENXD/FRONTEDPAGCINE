@@ -1,0 +1,137 @@
+<div class="container-fluid mt-5 container-fluid page-background">
+  <div class="row justify-content-center g-4">
+        <div class="col-12 col-md-6 col-lg-4 order-lg-2">
+
+<h2 class="fw-bold d-flex justify-content-center text-center mb-4 ">Crear Funcion:</h2>
+<div class="card p-4 shadow-sm">
+
+    <form [formGroup]="formularioFuncion" (ngSubmit)="guardarFuncion()">
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+    
+    <label for="idPeliculaSelect" class="col-form-label, text-secondary">Pelicula:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <select type="text" id="idPeliculaSelect" formControlName="idPelicula" class="form-select" aria-describedby="passwordHelpInline">
+    <option value="" disabled selected>Seleccione la pelicula...</option>
+
+    @for (pelicula of peliculas; track pelicula.idPelicula) {
+    <option [value]="pelicula.idPelicula">{{ pelicula.titulo }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="col-auto">
+    @if (formularioFuncion.get('idPelicula')?.invalid && formularioFuncion.get('idPelicula')?.touched){
+    <span id="passwordHelpInline" class="form-text">La pelicula es obligatorio</span>
+    }</div>
+    </div>
+
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="idSalaSelect" class="col-form-label, text-secondary">Sala:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <select type="text" id="idSalaSelect" formControlName="idSala" class="form-select" aria-describedby="passwordHelpInline">
+    <option value="" disabled selected>Seleccione una Sala...</option>
+
+    @for (sala of salas; track sala.idSala) {
+        <option [value]="sala.idSala">{{ sala.nombre }}</option>
+      }
+    </select>
+  </div>
+
+    <div class="col-auto">
+    @if (formularioFuncion.get('idSala')?.invalid && formularioFuncion.get('idSala')?.touched){
+    <span id="passwordHelpInline" class="form-text">La Sala es obligatorio</span>
+    }</div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="fechaInput" class="col-form-label, text-secondary">Fecha:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="date" id="fechaInput" formControlName="fecha" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+    @if (formularioFuncion.get('fecha')?.invalid && formularioFuncion.get('fecha')?.touched){
+    <span id="passwordHelpInline" class="form-text">La fecha es obligatorio</span>
+    }</div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+        
+    <label for="HoraInput" class="col-form-label, text-secondary">Hora:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="time" id="horaInput" formControlName="hora" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+    @if (formularioFuncion.get('hora')?.invalid && formularioFuncion.get('hora')?.touched){
+    <span id="passwordHelpInline" class="form-text">La hora es obligatorio</span>
+    }</div>
+    </div>
+
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+    <label for="precioEntradaInput" class="col-form-label, text-secondary">Precio Entrada::</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="number" Step="10.50" placeholder="0.00" min="20" id="precioEntradaInput"  formControlName="precioEntrada"  class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+     @if (formularioFuncion.get('precioEntrada')?.invalid && formularioFuncion.get('precioEntrada')?.touched){
+    <span id="passwordHelpInline" class="form-text">Debe de ingresar el precio es obligatorio</span>
+    }</div>
+    </div>
+
+    <button type="submit" class="btn btn-outline-secondary w-100 mt-2">Guardar</button>
+
+</form>
+
+</div>
+</div>
+
+<div class="col-12 col-lg-7 mb-4">
+<h2 class="fw-bold mb-4">Funcion Creados:</h2>
+<table class="table table-hover align-middle border shadow-sm rounded">
+    <thead class="table-light">
+        <tr>
+        <th>ID</th>
+        <th>Pelicula</th>
+        <th>Sala</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Precio entrada</th>
+      </tr> 
+    </thead>
+    <tbody>
+    @for (funcion of funciones; track funcion.idFuncion){
+            <tr>
+                <td>{{funcion.idFuncion}}</td>
+                <td>{{funcion.idPelicula}}</td>
+                <td>{{funcion.idSala}}</td>
+                <td>{{funcion.fecha}}</td>
+                <td>{{funcion.hora}}</td>
+                <td>{{funcion.precioEntrada}}</td>
+      </tr>
+      }
+    </tbody>
+</table>
+</div>
+ </div>
+</div>

@@ -78,4 +78,8 @@ export class Usuario implements  OnInit{
       alert("Error al crear el usuario, exsite un problema en el servidor.")
     }
   }
+
+  verTelefonos (usuario:any){
+    location.href="/telefonos/"+usuario.idUsuario;
+  }
 }

@@ -73,6 +73,7 @@
         <th>Nombre</th>
         <th>Fila</th>
         <th>Asientos por fila</th>
+        <th>Consultar Asientos</th>
         </tr>
     </thead>
     <tbody>
@@ -82,6 +83,7 @@
             <td>{{sala.nombre}}</td>
             <td>{{sala.filas}}</td>
             <td>{{sala.asientosPorFila}}</td>
+            <td><button (click)="verAsiento(sala)"> Ver asientos</button></td>
         </tr>
         }
     </tbody>
