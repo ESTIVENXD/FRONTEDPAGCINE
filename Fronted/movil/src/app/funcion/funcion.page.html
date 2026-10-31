@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+  Funciones Disponibles 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    @for(funcion of funciones; track funcion.idFuncion){
+    <ion-item>
+      <ion-label>{{funcion.idFuncion}}</ion-label>
+      <ion-label>{{funcion.idPelicula | pelicula :peliculas}}</ion-label>
+      <ion-label>{{funcion.idSala | sala :salas}}</ion-label>
+      <ion-label>{{funcion.fecha}}</ion-label>
+      <ion-label>{{funcion.hora}}</ion-label>
+      <ion-label>{{funcion.precioEntrada}}</ion-label>
+       <ion-label><button (click)="verReservas(funcion)"> Ver Reservas</button></ion-label>
+
+    </ion-item>
+    }
+    
+
+  </ion-list>
+</ion-content>

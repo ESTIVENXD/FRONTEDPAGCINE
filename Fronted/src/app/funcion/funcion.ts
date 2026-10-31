@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { PeliculaPipe } from '../pelicula-pipe';
+import { SalaPipe } from '../sala-pipe';
 
 
 @Component({
-  imports: [ReactiveFormsModule, FormsModule,CommonModule],
+  imports: [ReactiveFormsModule, FormsModule,CommonModule, PeliculaPipe, SalaPipe],
   selector: 'app-funcion',
   styleUrl: './funcion.css',
   templateUrl: './funcion.html',

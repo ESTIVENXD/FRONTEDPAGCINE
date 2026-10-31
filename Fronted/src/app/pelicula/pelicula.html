@@ -60,13 +60,11 @@
     <div class="row g-3 align-items-center">
     <div class="col-auto">
 
-    <label for="idGeneroSelect" class="col-form-label, text-secondary">Genero:</label>
+    <label for="idGenero" class="col-form-label, text-secondary">Genero:</label>
     </div>
     <div class=" d-flex align-items-center">
 
-    <select type="text" id="idGeneroSelect" formControlName="idGenero" class="form-select" aria-describedby="passwordHelpInline">
-    <option value="" disabled selected>Seleccione un género...</option>
-
+    <select type="text" id="idGenero" formControlName="idGenero" class="form-select" aria-describedby="passwordHelpInline">
      @for (genero of generos; track genero.idGenero) {
         <option [value]="genero.idGenero">{{ genero.nombre }}</option>
       }
@@ -83,13 +81,11 @@
     <div class="row g-3 align-items-center">
     <div class="col-auto">
 
-    <label for="idClasificacionSelect" class="col-form-label, text-secondary">Clasificacion:</label>
+    <label for="idClasificacion" class="col-form-label, text-secondary">Clasificacion:</label>
     </div>
     <div class=" d-flex align-items-center">
 
-    <select type="text" id="idClasificacionSelect" formControlName="idClasificacion" class="form-select" aria-describedby="passwordHelpInline">
-    <option value="" disabled selected>Seleccione un clasificacion...</option>
-
+    <select type="text" id="idClasificacion" formControlName="idClasificacion" class="form-select" aria-describedby="passwordHelpInline">
      @for (clasificacion of clasificaciones; track clasificacion.idClasificacion) {
         <option [value]="clasificacion.idClasificacion">{{ clasificacion.nombre }}</option>
       }
@@ -155,8 +151,8 @@
                 <td>{{pelicula.titulo}}</td>
                 <td>{{pelicula.sinopsis}}</td>
                 <td>{{pelicula.duracionMinutos}}</td>
-                <td>{{pelicula.idGenero}}</td>
-                <td>{{pelicula.idClasificacion}}</td>
+                <td>{{pelicula.idGenero | genero :generos}}</td>
+                <td>{{pelicula.idClasificacion | clasificacion :clasificaciones}}</td>
                 <td>@if (pelicula.imagenPromocional) {
         <img [src]="pelicula.imagenPromocional" alt="Foto del pelicula" style="width: 80px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
       } @else {

@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { RolPipe } from '../rol-pipe';
 
 @Component({
-  imports: [ReactiveFormsModule, FormsModule,CommonModule],
+  imports: [ReactiveFormsModule, FormsModule,CommonModule,RolPipe],
   selector: 'app-usuario',
   styleUrl: './usuario.css',
   templateUrl: './usuario.html',
@@ -18,6 +19,7 @@ export class Usuario implements  OnInit{
   private readonly cdr:ChangeDetectorRef;
 
   usuarios:any =[];
+  roles:any = [];
 
   constructor (private fb:FormBuilder, http:HttpClient, cdr: ChangeDetectorRef){
     this.formularioUsuario = this.fb.group(
@@ -37,6 +39,8 @@ export class Usuario implements  OnInit{
     }
   ngOnInit(): void {
     this.buscarUsuarios();    
+    this.buscarRol();
+
   }
   buscarUsuarios(){
     this.http.get("http://localhost:8080/usuario/buscar").subscribe(
@@ -45,6 +49,16 @@ export class Usuario implements  OnInit{
       }
     )
   }
+
+buscarRol(){
+  this.http.get("http://localhost:8080/rol/buscar").subscribe(
+    data => {
+      this.roles = data;
+      this.cdr.detectChanges();
+    }
+  )
+}
+
   agregarFoto(event:any){
     const archivo = event.target.files[0];
     if (archivo){

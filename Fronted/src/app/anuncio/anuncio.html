@@ -41,6 +41,22 @@
 }</div>
 </div>
 
+ <div class="row g-3 align-items-center">
+    <div class="col-auto">
+
+      <label for="tipoinput" class="col-form-label, text-secondary">Tipo:</label>
+    </div>
+    <div class=" d-flex align-items-center">
+
+    <input type="text" id="tipoInput" formControlName="tipo" class="form-control" aria-describedby="passwordHelpInline">
+    </div>
+    <div class="col-auto">
+
+      @if (formularioAnuncio.get('tipo')?.invalid && formularioAnuncio.get('tipo')?.touched){
+    <span id="passwordHelpInline" class="form-text">El tipo es obligatorio</span>
+    }</div>
+    </div>
+
 <div class="mb-3">
     <label for="formFileMultiple" class="form-label">Imagen:</label>
     <input type = "file" accept = "image/*" (change)="agregarImagen($event)" class="form-control" type="file" id="formFile" >
@@ -80,6 +96,7 @@
         <th>Titulo</th>
         <th>Descripcion</th>
         <th>Fecha Creacion</th>
+        <th>Tipo</th>
         <th>Foto</th>
       </tr> 
     </thead>
@@ -90,6 +107,7 @@
                 <td>{{anuncio.titulo}}</td>
                 <td>{{anuncio.descripcion}}</td>
                 <td>{{anuncio.fechaPublicacion | date}}</td>
+                <td>{{anuncio.tipo}}</td>
                 <td>@if (anuncio.imagen) {
         <img [src]="anuncio.imagen" alt="Foto del anuncio" style="width: 80px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
       } @else {

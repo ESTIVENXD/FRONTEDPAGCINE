@@ -25,7 +25,9 @@ export class Anuncio implements  OnInit {
       {
         titulo:['',[Validators.required]],
         descripcion:['',[Validators.required]],
+        tipo:['',[Validators.required]],
         imagen:['']
+       
       }
     );
     this.http = http;

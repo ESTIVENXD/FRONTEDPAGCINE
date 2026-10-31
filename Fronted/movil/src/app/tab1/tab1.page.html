@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Usuarios creados
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    @for(usuario of usuarios; track usuario.idusuario){
+    <ion-item>
+      <ion-label>{{usuario.idUsuario}}</ion-label>
+      <ion-label>{{usuario.nombres}}</ion-label>
+      <ion-label>{{usuario.email}}</ion-label>
+      <ion-label>{{usuario.password}}</ion-label>
+      <ion-label>{{usuario.fechaCreacion | date}}</ion-label>
+    </ion-item>
+    }
+
+  </ion-list>
+</ion-content>

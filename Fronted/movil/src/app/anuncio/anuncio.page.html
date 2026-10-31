@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+  Anuncios
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    @for(anuncio of anuncios; track anuncio.idAnuncio){
+    <ion-item>
+      <ion-label>{{anuncio.idAnuncio}}</ion-label>
+      <ion-label>{{anuncio.titulo}}</ion-label>
+      <ion-label>{{anuncio.descripcion}}</ion-label>
+      <ion-label>{{anuncio.fechaPublicacion}}</ion-label>
+       <ion-label>{{anuncio.tipo}}</ion-label>
+      <ion-label>@if (anuncio.imagen) {
+        <img [src]="anuncio.imagen" alt="Foto del anuncio" style="width: 80px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+      } @else {
+        <span class="text-muted small">Sin foto</span>
+      }</ion-label>
+    </ion-item>
+    }
+    
+
+  </ion-list>
+</ion-content>

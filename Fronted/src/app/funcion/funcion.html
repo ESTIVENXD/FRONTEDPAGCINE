@@ -6,16 +6,15 @@
 <div class="card p-4 shadow-sm">
 
     <form [formGroup]="formularioFuncion" (ngSubmit)="guardarFuncion()">
+    
     <div class="row g-3 align-items-center">
     <div class="col-auto">
     
-    <label for="idPeliculaSelect" class="col-form-label, text-secondary">Pelicula:</label>
+    <label for="idPelicula" class="col-form-label, text-secondary">Pelicula:</label>
     </div>
     <div class=" d-flex align-items-center">
 
-    <select type="text" id="idPeliculaSelect" formControlName="idPelicula" class="form-select" aria-describedby="passwordHelpInline">
-    <option value="" disabled selected>Seleccione la pelicula...</option>
-
+    <select type="text" id="idPelicula" formControlName="idPelicula" class="form-select" aria-describedby="passwordHelpInline">
     @for (pelicula of peliculas; track pelicula.idPelicula) {
     <option [value]="pelicula.idPelicula">{{ pelicula.titulo }}</option>
       }
@@ -32,13 +31,11 @@
     <div class="row g-3 align-items-center">
     <div class="col-auto">
 
-    <label for="idSalaSelect" class="col-form-label, text-secondary">Sala:</label>
+    <label for="idSala" class="col-form-label, text-secondary">Sala:</label>
     </div>
     <div class=" d-flex align-items-center">
 
-    <select type="text" id="idSalaSelect" formControlName="idSala" class="form-select" aria-describedby="passwordHelpInline">
-    <option value="" disabled selected>Seleccione una Sala...</option>
-
+    <select type="text" id="idSala" formControlName="idSala" class="form-select" aria-describedby="passwordHelpInline">
     @for (sala of salas; track sala.idSala) {
         <option [value]="sala.idSala">{{ sala.nombre }}</option>
       }
@@ -123,8 +120,8 @@
     @for (funcion of funciones; track funcion.idFuncion){
             <tr>
                 <td>{{funcion.idFuncion}}</td>
-                <td>{{funcion.idPelicula}}</td>
-                <td>{{funcion.idSala}}</td>
+                <td>{{funcion.idPelicula | pelicula :peliculas}}</td>
+                <td>{{funcion.idSala | sala :salas}}</td>
                 <td>{{funcion.fecha}}</td>
                 <td>{{funcion.hora}}</td>
                 <td>{{funcion.precioEntrada}}</td>

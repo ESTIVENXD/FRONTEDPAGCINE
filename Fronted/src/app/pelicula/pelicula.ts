@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { GeneroPipe } from '../genero-pipe';
+import { ClasificacionPipe } from '../clasificacion-pipe';
 
 @Component({
-  imports: [ReactiveFormsModule, FormsModule,CommonModule],
+  imports: [ReactiveFormsModule, FormsModule,CommonModule, GeneroPipe, ClasificacionPipe],
   selector: 'app-pelicula',
   styleUrl: './pelicula.css',
   templateUrl: './pelicula.html',
