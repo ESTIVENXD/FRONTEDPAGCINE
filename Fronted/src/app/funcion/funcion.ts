@@ -80,7 +80,7 @@ export class Funcion implements  OnInit{
       this.buscarFuncion();
     }
     else{
-      alert("Error al crear Anuncio, exsite un problema en el servidor.")
+      alert("Error al crear funcion, exsite un problema en el servidor.")
     }
   }
 }

@@ -49,13 +49,7 @@ export class Asiento implements OnInit {
   }
 )
 }
-  /* buscarAsiento(){
-    this.http.get("http://localhost:8080/asiento/buscar").subscribe(
-      data => {this.asientos=data 
-      this.cdr.detectChanges();
-      }
-    )
-  }*/
+
   guardarAsiento(){
     if (this.formularioAsiento.valid){
       let temp = {...this.formularioAsiento.value};

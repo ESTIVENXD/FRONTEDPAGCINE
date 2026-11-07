@@ -1,0 +1,133 @@
+<div class="container-fluid mt-5 page-background">
+  <div class="row justify-content-center g-4">
+    
+
+    <div class="col-12 col-md-6 col-lg-5 order-lg-2">
+      <h2 class="fw-bold d-flex justify-content-center text-center mb-4">Crear Reserva:</h2>
+      
+      <div class="card p-4 shadow-sm">
+        <form [formGroup]="formularioReserva" (ngSubmit)="guardarReserva()">
+          
+
+          <div class="row g-3 align-items-center mb-3">
+            <div class="col-auto">
+              <label for="idFuncion" class="col-form-label text-secondary">Seleccionar Función:</label>
+            </div>
+            <div class="d-flex align-items-center">
+              <select id="idFuncion" formControlName="idFuncion" class="form-select" (change)="FuncionCambiar($event)">
+                <option value="" disabled selected>Seleccione una función...</option>
+                @for (funcion of funciones; track funcion.idFuncion) {
+                  <option [value]="funcion.idFuncion">
+                    ID: {{ funcion.idFuncion }} - Precio: {{ funcion.precioEntrada | currency:'GTQ':'symbol':'1.2-2' }} (Hora: {{ funcion.hora }})
+                  </option>
+                }
+              </select>
+            </div>
+            @if (formularioReserva.get('idFuncion')?.invalid && formularioReserva.get('idFuncion')?.touched) {
+              <span class="text-danger small">Debe seleccionar una función.</span>
+            }
+          </div>
+
+
+          @if (funcionSeleccionada) {
+            <div class="mb-3 text-center bg-light p-2 rounded border">
+              <small class="text-muted d-block">Precio unitario de esta función:</small>
+              <strong class="text-dark fs-6">
+                {{ (funcionSeleccionada.precioEntrada) | currency:'GTQ':'symbol':'1.2-2' }}
+              </strong>
+            </div>
+          }
+
+ 
+          <div class="row g-3 align-items-center mb-4">
+            <div class="col-auto">
+              <label for="idCliente" class="col-form-label text-secondary">Seleccionar Cliente:</label>
+            </div>
+            <div class="d-flex align-items-center">
+              <select id="idCliente" formControlName="idCliente" class="form-select">
+                <option value="" disabled selected>Seleccione el cliente...</option>
+                @for (cliente of clientes; track cliente.idCliente) {
+                  <option [value]="cliente.idCliente">
+                    {{ cliente.nombres }} {{ cliente.apellidos }}
+                  </option>
+                }
+              </select>
+            </div>
+            @if (formularioReserva.get('idCliente')?.invalid && formularioReserva.get('idCliente')?.touched) {
+              <span class="text-danger small">Debe seleccionar un cliente para la reserva.</span>
+            }
+          </div>
+
+
+          <div class="row g-3 align-items-center mb-3 border-top pt-3">
+            <div class="col-6">
+              <label class="col-form-label text-secondary">Cantidad de Entradas:</label>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-end gap-2">
+              <button type="button" class="btn btn-outline-danger btn-sm px-3" (click)="restarEntrada()">−</button>
+              <span class="fw-bold px-2 fs-5">{{ cantidadEntradas }}</span>
+              <button type="button" class="btn btn-outline-success btn-sm px-3" (click)="sumarEntrada()">+</button>
+            </div>
+          </div>
+
+
+          <div class="row g-3 align-items-center mb-4">
+            <div class="col-5">
+              <label for="totalAPagarInput" class="col-form-label text-secondary fw-bold">Total a Pagar:</label>
+            </div>
+            <div class="col-7">
+              <input 
+                type="text" 
+                id="totalAPagarInput" 
+                [value]="totalAPagar | currency:'GTQ':'symbol':'1.2-2'" 
+                [readonly]="true" 
+                class="form-control fw-bold text-success text-center bg-light fs-5">
+            </div>
+          </div>
+
+
+          <button type="submit" class="btn btn-outline-secondary w-100 mt-2">Guardar</button>
+
+        </form>
+      </div>
+    </div>
+
+
+    <div class="col-12 col-lg-7 mb-4">
+      <h2 class="fw-bold mb-4">Reservas Creadas:</h2>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle border shadow-sm rounded">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Cliente</th>
+              <th>ID Función</th>
+              <th>Entradas</th>
+              <th>Total</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (reserva of reservas; track reserva.idReserva) {
+              <tr>
+                <td>{{ reserva.idReserva }}</td>
+                <td>{{ (reserva.idCliente ) | cliente :clientes }}</td>
+                <td>{{ reserva.idFuncion  }}</td>
+                <td>{{ reserva.cantidadEntradas  }}</td>
+                <td>{{ (reserva.totalAPagar ) | currency:'GTQ':'symbol':'1.2-2' }}</td>
+                <td>{{ (reserva.fechaReserva ) | date: 'dd/MM/yyyy' }}</td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="6" class="text-center text-muted py-3">
+                  No hay reservas registradas en el sistema.
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

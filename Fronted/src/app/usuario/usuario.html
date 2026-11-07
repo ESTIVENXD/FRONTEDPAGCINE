@@ -177,7 +177,7 @@
         </tr>
     </thead>
     <tbody>
-         @for(usuario of usuarios; track usuario.idusuario){
+         @for(usuario of usuarios; track usuario.idUsuario){
         <tr>
             <td>{{usuario.idUsuario}}</td>
             <td>{{usuario.nombres}}</td>
@@ -187,7 +187,7 @@
             <td>{{usuario.nombreUsuario}}</td>
             <td>{{usuario.password}}</td>
             <td>{{usuario.idRol | rol :roles}}</td>
-            <td>@if (usuario.fotografia){<img [src]="usuario.fotografia" alt="Foto del anuncio" style="width: 80px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+            <td>@if (usuario.fotografia){<img [src]="usuario.fotografia" alt="Foto de perfil" style="width: 80px; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
       } @else {
         <span class="text-muted small">Sin foto</span>
       }</td>
